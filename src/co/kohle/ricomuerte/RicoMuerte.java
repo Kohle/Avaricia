@@ -26,8 +26,6 @@ import java.util.logging.Level;
 
 public class RicoMuerte extends JavaPlugin {
 
-    FileConfiguration config = getConfig();
-
     @Override
     public void onEnable() {
         getLogger().log(Level.INFO, "Enabled.");
@@ -43,9 +41,12 @@ public class RicoMuerte extends JavaPlugin {
     }
 
     public void doConfig() {
+        FileConfiguration config = getConfig();
+
         config.addDefault("drop.item", "GOLD_INGOT");
         config.addDefault("drop.amount", 10);
         config.options().copyDefaults(true);
+
         saveConfig();
     }
 }
