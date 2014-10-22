@@ -45,6 +45,8 @@ public class Avaricia extends JavaPlugin {
 
         config.addDefault("drop.item", "GOLD_INGOT");
         config.addDefault("drop.amount", 10);
+        config.addDefault("effect.name", "LARGE_SMOKE");
+        config.addDefault("effect.duration", 10);
         config.options().copyDefaults(true);
 
         saveConfig();

@@ -18,6 +18,7 @@
 package co.kohle.avaricia.events;
 
 import co.kohle.avaricia.Avaricia;
+import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -45,7 +46,11 @@ public class Death implements Listener {
             Material material = Material.getMaterial(plugin.getConfig().getString("drop.item"));
             int amount = plugin.getConfig().getInt("drop.amount");
 
+            Effect effect = Effect.getByName(plugin.getConfig().getString("effect.name"));
+            int duration = plugin.getConfig().getInt("effect.duration");
+
             victim.getWorld().dropItemNaturally(location, new ItemStack(material, amount));
+            victim.getWorld().playEffect(location, effect, duration);
         }
     }
 }
