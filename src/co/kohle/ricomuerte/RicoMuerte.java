@@ -17,6 +17,8 @@
 
 package co.kohle.ricomuerte;
 
+import co.kohle.ricomuerte.events.Death;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
@@ -26,6 +28,7 @@ public class RicoMuerte extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().log(Level.INFO, "Enabled.");
+        getServer().getPluginManager().registerEvents(new Death(), this);
     }
 
     @Override
