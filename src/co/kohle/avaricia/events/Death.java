@@ -1,23 +1,23 @@
 /*
- * This file is part of RicoMuerte.
+ * This file is part of Avaricia.
  *
  * Copyright (c) 2014 Kohle <http://kohle.co>
- * RicoMuerte is licensed under the Mozilla Public License 2.0.
+ * Avaricia is licensed under the Mozilla Public License 2.0.
  *
- * RicoMuerte is free software: you can redistribute it and/or modify
+ * Avaricia is free software: you can redistribute it and/or modify
  * it under the terms of the Mozilla Public License as published by
  * the Mozilla project.
  *
- * RicoMuerte is distributed in the hope that it will be useful,
+ * Avaricia is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY. See the license for more details.
  *
  * You should have received a copy of the Mozilla Public License 2.0
  * along with this program.  If not, see <https://www.mozilla.org/MPL/2.0/>.
  */
 
-package co.kohle.ricomuerte.events;
+package co.kohle.avaricia.events;
 
-import co.kohle.ricomuerte.RicoMuerte;
+import co.kohle.avaricia.Avaricia;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -26,13 +26,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.EventListener;
-
 public class Death implements Listener {
 
-    public RicoMuerte plugin;
+    public Avaricia plugin;
 
-    public Death(RicoMuerte instance) {
+    public Death(Avaricia instance) {
         plugin = instance;
     }
 

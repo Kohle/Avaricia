@@ -1,4 +1,4 @@
-RicoMuerte
+Avaricia
 ==========
 
-A Bukkit plugin that drops gold when a player is killed.
+A Bukkit plugin that drops a configurable amount of a material when a player is killed in PvP.
