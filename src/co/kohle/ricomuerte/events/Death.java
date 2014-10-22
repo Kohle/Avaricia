@@ -17,21 +17,36 @@
 
 package co.kohle.ricomuerte.events;
 
+import co.kohle.ricomuerte.RicoMuerte;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.EventListener;
 
 public class Death implements Listener {
 
+    public RicoMuerte plugin;
+
+    public Death(RicoMuerte instance) {
+        plugin = instance;
+    }
+
     @EventHandler
     public void playerDeath(PlayerDeathEvent event) {
-        if((event.getEntity() instanceof Player) && (event.getEntity().getKiller() instanceof Player)) {
+        if((event.getEntity() instanceof Player) /*&& (event.getEntity().getKiller() instanceof Player)*/) {
             Player victim = event.getEntity().getPlayer();
             Player killer = event.getEntity().getKiller();
-            victim.getServer().broadcastMessage(victim.getName() + " was killed by " + killer.getName());
+            Location location = victim.getLocation();
+
+            Material material = Material.getMaterial(plugin.getConfig().getString("drop.item"));
+            int amount = plugin.getConfig().getInt("drop.amount");
+
+            victim.getWorld().dropItemNaturally(location, new ItemStack(material, amount));
         }
     }
 }

@@ -19,20 +19,33 @@ package co.kohle.ricomuerte;
 
 import co.kohle.ricomuerte.events.Death;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
 
 public class RicoMuerte extends JavaPlugin {
 
+    FileConfiguration config = getConfig();
+
     @Override
     public void onEnable() {
         getLogger().log(Level.INFO, "Enabled.");
-        getServer().getPluginManager().registerEvents(new Death(), this);
+
+        getServer().getPluginManager().registerEvents(new Death(this), this);
+
+        doConfig();
     }
 
     @Override
     public void onDisable() {
         getLogger().log(Level.INFO, "Disabled.");
+    }
+
+    public void doConfig() {
+        config.addDefault("drop.item", "GOLD_INGOT");
+        config.addDefault("drop.amount", 10);
+        config.options().copyDefaults(true);
+        saveConfig();
     }
 }
