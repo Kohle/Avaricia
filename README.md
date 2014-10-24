@@ -14,3 +14,4 @@ Planned features:
 Current permissions:
 * avaricia.*  -  gives access to all Avaricia permissions.
 * avaricia.xp.use  -  gives access to XP exchange signs.
+* avaricia.xp.create  -  gives access to create XP exchange signs. (Currently does not work!)
