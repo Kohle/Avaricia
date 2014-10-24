@@ -26,6 +26,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -37,16 +38,34 @@ public class ExperienceExchange implements Listener {
         plugin = instance;
     }
 
+    @EventHandler //lol not working too tired to look for fix
+    public void onSignCreate(SignChangeEvent event) {
+        Player player = event.getPlayer();
+        Block block = event.getBlock();
+        if(block.getState() instanceof Sign) {
+            Sign sign = (Sign) block.getState();
+            if(sign.getLine(0).equalsIgnoreCase("[XP]")) {
+                if(player.hasPermission("avaricia.xp.create")) {
+                    event.setCancelled(false);
+                    player.sendMessage(ChatColor.YELLOW + "Successfully created XP exchange sign.");
+                } else {
+                    event.setCancelled(true);
+                    player.sendMessage(ChatColor.RED + "You do not have permission!");
+                }
+            }
+        }
+    }
+
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (event.getClickedBlock().getState() instanceof Sign) {
-                Sign s = (Sign) event.getClickedBlock().getState();
-                if (s.getLine(0).equalsIgnoreCase("[XP]")) {
+                Sign sign = (Sign) event.getClickedBlock().getState();
+                if (sign.getLine(0).equalsIgnoreCase("[XP]")) {
                     if (player.hasPermission("avaricia.xp.use")) {
-                        String itemCostString = s.getLine(1);
-                        String xpLevelString = s.getLine(2);
+                        String itemCostString = sign.getLine(1);
+                        String xpLevelString = sign.getLine(2);
                         int itemCost = Integer.parseInt(itemCostString);
                         int xpLevel = Integer.parseInt(xpLevelString);
                         Material material = Material.getMaterial(plugin.getConfig().getString("drop.item"));

@@ -7,6 +7,10 @@ permissions:
      description: Gives access to all Avaricia features.
      children:
        avaricia.xp.use: true
+       avaricia.xp.create: true
    avaricia.xp.use:
      description: Gives access to XP exchange signs.
      default: true
+   avaricia.xp.create:
+     description: Gives access to create XP exchange signs.
+     default: false
