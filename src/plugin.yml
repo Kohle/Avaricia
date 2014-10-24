@@ -2,3 +2,11 @@ name: Avaricia
 main: co.kohle.avaricia.Avaricia
 author: Kohle
 version: 1.0
+permissions:
+   avaricia.*:
+     description: Gives access to all Avaricia features.
+     children:
+       avaricia.xp.use: true
+   avaricia.xp.use:
+     description: Gives access to XP exchange signs.
+     default: true

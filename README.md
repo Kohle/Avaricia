@@ -10,3 +10,7 @@ Current features:
 Planned features:
 * a configurable item-to-experience exchange rate
 * a "Mystery Box" where players will get a random item from a configurable list
+
+Current permissions:
+* avaricia.*  -  gives access to all Avaricia permissions.
+* avaricia.xp.use  -  gives access to XP exchange signs.

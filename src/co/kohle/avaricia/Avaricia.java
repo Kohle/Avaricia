@@ -18,6 +18,7 @@
 package co.kohle.avaricia;
 
 import co.kohle.avaricia.events.Death;
+import co.kohle.avaricia.events.ExperienceExchange;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -31,6 +32,7 @@ public class Avaricia extends JavaPlugin {
         getLogger().log(Level.INFO, "Enabled.");
 
         getServer().getPluginManager().registerEvents(new Death(this), this);
+        getServer().getPluginManager().registerEvents(new ExperienceExchange(this), this);
 
         doConfig();
     }
