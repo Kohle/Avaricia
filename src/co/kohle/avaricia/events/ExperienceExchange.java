@@ -43,7 +43,7 @@ public class ExperienceExchange implements Listener {
     public void onSignCreate(SignChangeEvent event) {
         Player player = event.getPlayer();
         if(event.getBlock().getState() instanceof Sign) {
-            Sign sign = (Sign) event.getBlock();
+            Sign sign = (Sign) event.getBlock().getState();
             if(sign.getLine(0).equalsIgnoreCase("Test")) {
                 player.sendMessage("SignChangeEvent");
             }
@@ -54,7 +54,7 @@ public class ExperienceExchange implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
         if(event.getBlock().getState() instanceof Sign) {
-            Sign sign = (Sign) event.getBlock();
+            Sign sign = (Sign) event.getBlock().getState();
             if(sign.getLine(0).equalsIgnoreCase("Test")) {
                 player.sendMessage("BlockPlaceEvent");
             }
