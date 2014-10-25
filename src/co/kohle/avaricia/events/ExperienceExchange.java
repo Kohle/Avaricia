@@ -45,6 +45,8 @@ public class ExperienceExchange implements Listener {
         if(event.getBlock().getState() instanceof Sign) {
             Sign sign = (Sign) event.getBlock().getState();
             player.sendMessage("instance of sign");
+            player.sendMessage(sign.getLines()[1]);
+            player.sendMessage(sign.getLine(1));
             if(sign.getLine(0).toLowerCase().contains("test")) {
                 player.sendMessage("checked line 0");
                 if(player.hasPermission("avaricia.xp.create")) {
