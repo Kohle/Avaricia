@@ -43,16 +43,17 @@ public class ExperienceExchange implements Listener {
     public void onSignCreate(SignChangeEvent event) {
         Player player = event.getPlayer();
         if(event.getBlock().getState() instanceof Sign) {
-            Sign sign = (Sign) event.getBlock().getState();
-            player.sendMessage("instance of sign");
-            player.sendMessage(sign.getLines()[1]);
-            player.sendMessage(sign.getLine(1));
-            if(sign.getLine(0).toLowerCase().contains("test")) {
-                player.sendMessage("checked line 0");
+            if(event.getLine(0).equalsIgnoreCase("[XP]")) {
                 if(player.hasPermission("avaricia.xp.create")) {
-                    player.sendMessage("permission");
+                    if(event.getLine(1).isEmpty() && event.getLine(2).isEmpty()) {
+                        player.sendMessage(ChatColor.RED + "You must specify the exchange rate!");
+                    } else {
+                        event.setLine(0, "[XP]");
+                        player.sendMessage(ChatColor.GOLD + "XP exchange sign created!");
+                    }
                 } else {
-                    player.sendMessage("no permission");
+                    player.sendMessage(ChatColor.RED + "You do not have permission!");
+                    event.setLine(0, null);
                 }
             }
         }
@@ -65,7 +66,6 @@ public class ExperienceExchange implements Listener {
             if (event.getClickedBlock().getState() instanceof Sign) {
                 Sign sign = (Sign) event.getClickedBlock().getState();
                 if (sign.getLine(0).equalsIgnoreCase("[XP]")) {
-                    if (player.hasPermission("avaricia.xp.use")) {
                         String itemCostString = sign.getLine(1);
                         String xpLevelString = sign.getLine(2);
                         int itemCost = Integer.parseInt(itemCostString);
