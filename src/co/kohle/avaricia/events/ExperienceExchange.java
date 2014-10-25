@@ -47,6 +47,7 @@ public class ExperienceExchange implements Listener {
                 if (player.hasPermission("avaricia.xp.create")) {
                     if (event.getLine(1).isEmpty() && event.getLine(2).isEmpty()) {
                         player.sendMessage(ChatColor.RED + "You must specify the exchange rate!");
+                        event.setLine(0, null);
                     } else {
                         event.setLine(0, "[XP]");
                         player.sendMessage(ChatColor.GOLD + "XP exchange sign created!");

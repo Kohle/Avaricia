@@ -9,10 +9,9 @@ Current features:
 * item to experience exchange sign
 
 Planned features:
-* a permission node for creation of the item to experience exchange sign
 * a "Mystery Box" where players will get a random item from a configurable list
 
 Current permissions:
 * avaricia.*  -  gives access to all Avaricia permissions.
 * avaricia.xp.use  -  gives access to XP exchange signs.
-* avaricia.xp.create  -  gives access to create XP exchange signs. (Currently does not work!)
+* avaricia.xp.create  -  gives access to create XP exchange signs.
