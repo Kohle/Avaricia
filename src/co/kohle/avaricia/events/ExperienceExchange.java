@@ -26,6 +26,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -38,20 +39,24 @@ public class ExperienceExchange implements Listener {
         plugin = instance;
     }
 
-    @EventHandler //lol not working too tired to look for fix
+    @EventHandler
     public void onSignCreate(SignChangeEvent event) {
         Player player = event.getPlayer();
-        Block block = event.getBlock();
-        if(block.getState() instanceof Sign) {
-            Sign sign = (Sign) block.getState();
-            if(sign.getLine(0).equalsIgnoreCase("[XP]")) {
-                if(player.hasPermission("avaricia.xp.create")) {
-                    event.setCancelled(false);
-                    player.sendMessage(ChatColor.YELLOW + "Successfully created XP exchange sign.");
-                } else {
-                    event.setCancelled(true);
-                    player.sendMessage(ChatColor.RED + "You do not have permission!");
-                }
+        if(event.getBlock() instanceof Sign) {
+            Sign sign = (Sign) event.getBlock();
+            if(sign.getLine(0).equalsIgnoreCase("Test")) {
+                player.sendMessage("SignChangeEvent");
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
+        Player player = event.getPlayer();
+        if(event.getBlock() instanceof Sign) {
+            Sign sign = (Sign) event.getBlock();
+            if(sign.getLine(0).equalsIgnoreCase("Test")) {
+                player.sendMessage("BlockPlaceEvent");
             }
         }
     }
