@@ -42,10 +42,10 @@ public class ExperienceExchange implements Listener {
     @EventHandler
     public void onSignCreate(SignChangeEvent event) {
         Player player = event.getPlayer();
-        if(event.getBlock().getState() instanceof Sign) {
-            if(event.getLine(0).equalsIgnoreCase("[XP]")) {
-                if(player.hasPermission("avaricia.xp.create")) {
-                    if(event.getLine(1).isEmpty() && event.getLine(2).isEmpty()) {
+        if (event.getBlock().getState() instanceof Sign) {
+            if (event.getLine(0).equalsIgnoreCase("[XP]")) {
+                if (player.hasPermission("avaricia.xp.create")) {
+                    if (event.getLine(1).isEmpty() && event.getLine(2).isEmpty()) {
                         player.sendMessage(ChatColor.RED + "You must specify the exchange rate!");
                     } else {
                         event.setLine(0, "[XP]");
@@ -66,25 +66,22 @@ public class ExperienceExchange implements Listener {
             if (event.getClickedBlock().getState() instanceof Sign) {
                 Sign sign = (Sign) event.getClickedBlock().getState();
                 if (sign.getLine(0).equalsIgnoreCase("[XP]")) {
-                        String itemCostString = sign.getLine(1);
-                        String xpLevelString = sign.getLine(2);
-                        int itemCost = Integer.parseInt(itemCostString);
-                        int xpLevel = Integer.parseInt(xpLevelString);
-                        Material material = Material.getMaterial(plugin.getConfig().getString("drop.item"));
-                        if (player.getInventory().contains(material, itemCost)) {
-                            player.giveExpLevels(xpLevel);
-                            player.getInventory().removeItem(new ItemStack(material, itemCost));
-                            player.updateInventory();
-                            player.sendMessage(ChatColor.GOLD + "Successfully exchanged " + itemCost + " " + material.toString() + " for " + xpLevel + " levels of XP.");
-                        } else {
-                            player.sendMessage(ChatColor.RED + "You need at least " + itemCost + " " + material.toString() + ".");
-                        }
+                    String itemCostString = sign.getLine(1);
+                    String xpLevelString = sign.getLine(2);
+                    int itemCost = Integer.parseInt(itemCostString);
+                    int xpLevel = Integer.parseInt(xpLevelString);
+                    Material material = Material.getMaterial(plugin.getConfig().getString("drop.item"));
+                    if (player.getInventory().contains(material, itemCost)) {
+                        player.giveExpLevels(xpLevel);
+                        player.getInventory().removeItem(new ItemStack(material, itemCost));
+                        player.updateInventory();
+                        player.sendMessage(ChatColor.GOLD + "Successfully exchanged " + itemCost + " " + material.toString() + " for " + xpLevel + " levels of XP.");
                     } else {
-                        player.sendMessage(ChatColor.RED + "You do not have permission!");
+                        player.sendMessage(ChatColor.RED + "You need at least " + itemCost + " " + material.toString() + ".");
                     }
+                } else {
+                    player.sendMessage(ChatColor.RED + "You do not have permission!");
                 }
-            } else {
-                return;
             }
         }
     }
