@@ -44,21 +44,14 @@ public class ExperienceExchange implements Listener {
         Player player = event.getPlayer();
         if(event.getBlock().getState() instanceof Sign) {
             Sign sign = (Sign) event.getBlock().getState();
-            player.sendMessage("SignChangeEvent");
+            player.sendMessage("instance of sign");
             if(sign.getLine(0).toLowerCase().contains("test")) {
-                player.sendMessage("SignChangeEvent");
-            }
-        }
-    }
-
-    @EventHandler
-    public void onBlockPlace(BlockPlaceEvent event) {
-        Player player = event.getPlayer();
-        if(event.getBlock().getState() instanceof Sign) {
-            Sign sign = (Sign) event.getBlock().getState();
-            player.sendMessage("SignChangeEvent");
-            if(sign.getLine(0).toLowerCase().contains("test")) {
-                player.sendMessage("BlockPlaceEvent");
+                player.sendMessage("checked line 0");
+                if(player.hasPermission("avaricia.xp.create")) {
+                    player.sendMessage("permission");
+                } else {
+                    player.sendMessage("no permission");
+                }
             }
         }
     }
